@@ -1,0 +1,23 @@
+# systemd service file
+# install to /usr/lib/systemd/system as kibana.service
+# enable service with "systemctl enable kibana.service"
+# start service with "systemctl start kibana.service"
+
+[Unit]
+Description=Kibana Web Service
+After=syslog.target
+After=network.target
+
+[Service]
+Type=simple
+User=mpservice
+Group=mp
+ExecStart=/opt/mp/kibana/bin/kibana
+
+# Give a reasonable amount of time for the server to start up/shut down
+TimeoutSec=20
+# Auto restart on failed service
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
