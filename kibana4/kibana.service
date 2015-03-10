@@ -1,18 +1,27 @@
-# systemd service file
-# install to /usr/lib/systemd/system as kibana.service
+#
+# systemd unit service configuration file for Kibana 4 Web Instance
+# get the latest version @ https://github.com/robertlandes/systemd-service-unit-config
+# get latest Kibana version @ http://www.elasticsearch.org/overview/elkdownloads/
+# 
+# install to "/usr/lib/systemd/system/" (RHEL/CENTOS)as kibana.service
+# run "systemctl daemon-reload"
 # enable service with "systemctl enable kibana.service"
 # start service with "systemctl start kibana.service"
+# stop service with "systemctl stop kibana.service"
+#
 
 [Unit]
-Description=Kibana Web Service
+Description=Kibana 4 Web Instance
 After=syslog.target
 After=network.target
 
 [Service]
 Type=simple
-User=mpservice
-Group=mp
-ExecStart=/opt/mp/kibana/bin/kibana
+# Put the user as which the service should run here:
+User=USER
+# Put the group as which the service should run here:
+Group=GROUP
+ExecStart=/PATH/TO/KIBANAWEBSERVER/kibana/bin/kibana
 
 # Give a reasonable amount of time for the server to start up/shut down
 TimeoutSec=20
